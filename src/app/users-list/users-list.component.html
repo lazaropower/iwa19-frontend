@@ -1,0 +1,12 @@
+<h2>Users</h2>
+
+<h3>Register new user</h3>
+<a [routerLink]="['admin/signup']">New user</a>
+
+<h3>List of Users</h3>
+<ul>
+  <li *ngFor="let user of userList">
+    <span class="badge">{{user.id}}</span> {{ user.email }}
+    <button title="delete" (click)="delete(user)">delete</button>
+  </li>
+</ul>
