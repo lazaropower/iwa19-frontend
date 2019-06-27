@@ -12,6 +12,7 @@ import { AdminComponent } from './admin/admin.component';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { GradesComponent } from './grades/grades.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'admin/courses', component: CoursesListComponent },
   { path: 'admin/users', component: UsersListComponent },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'signup', component: RegisterComponent },
+  { path: 'admin/signup', component: RegisterComponent },
+  { path: 'grades', component: GradesComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
@@ -34,6 +36,7 @@ const routes: Routes = [
     AdminComponent,
     CoursesListComponent,
     UsersListComponent,
+    GradesComponent,
   ],
   imports: [
     BrowserModule,

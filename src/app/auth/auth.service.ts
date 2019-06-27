@@ -6,7 +6,7 @@ import {JwtResponse} from './jwt-response';
 import {SignupInfo} from './signup-info';
 
 const httpOptions = {
-  headers: new HttpHeaders({'COntent-Type': 'application/json'})
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 @Injectable({

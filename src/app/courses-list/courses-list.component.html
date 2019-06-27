@@ -1,19 +1,52 @@
-<h2>Courses</h2>
+<div *ngIf="authority === 'admin'; else unAuthorized">
+  <h2>Courses</h2>
 
-<div>
-  <label>Course name:
-    <input #courseName />
-  </label>
+  <h3>Add new Course</h3>
+  <div>
+    <label>Course name:
+      <input #courseName />
+    </label>
+    <br>
+   <!-- (click) passes input value to add() and then clears the input -->
+      <button (click)="add(courseName.value)">
+        add
+      </button>
+
+    <div *ngIf="isAdded" class="alert alert-danger">
+      {{errorMessage}}
+    </div>
+
+  </div>
+  <h3>List of availables courses</h3>
+  <ul>
+    <li *ngFor="let course of courseList">
+      <span class="badge">{{course.name}}
+        <button title="delete" (click)="delete(course)">delete</button>
+      </span>
+
+    <span *ngFor="let user of course.users">
+     <p>{{user.email}}. <strong>Grade</strong>: {{user.grade}}</p>
+    </span>
+    </li>
+
+  </ul>
+
+  <h3>Add / Delete users to courses</h3>
+
+  <select ng-model="userSelected" [(ngModel)]="userSelected">
+    <option *ngFor="let user of userList" value="{{ user.email }}">{{ user.email }}</option>
+  </select>
+  <select ng-model="courseSelected" [(ngModel)]="courseSelected">
+    <option *ngFor="let course of courseList" value="{{ course.name }}">{{ course.name }}</option>
+  </select>
+
+  <button (click)="addUserToCourse(userSelected, courseSelected)"> Add </button>
+  <button (click)="deleteUserFromCourse(userSelected, courseSelected)"> Delete </button>
   <br>
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(courseName.value)">
-    add
-  </button>
+  <br>
+  <br>
 </div>
 
-<ul>
-  <li *ngFor="let course of courseList">
-    <span class="badge">{{course.id}}</span> {{ course.name }}
-    <button title="delete" (click)="delete(course)">delete</button>
-  </li>
-</ul>
+<ng-template #unAuthorized>
+  You are not an administrator!
+</ng-template>

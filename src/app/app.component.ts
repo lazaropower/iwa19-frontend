@@ -7,7 +7,7 @@ import {TokenStorageService} from './auth/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'frontend';
+  title = 'Virtual Campus';
   private roles: string[];
   private authority: string;
 
@@ -17,18 +17,17 @@ export class AppComponent implements OnInit {
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
-        if (role === 'ROLE_ADMIN') {
-          this.authority = 'admin';
-          return false;
-        } else if (role === 'ROLE_STUDENT') {
-          this.authority = 'student';
-          return false;
-        } else if (role === 'ROLE_PROFESSOR') {
-          this.authority = 'professor';
-          return false;
-        }
-      /*  this.authority = 'user'; */
-        return true; //TODO: revisar esto
+          if (role === 'ROLE_ADMIN') {
+            this.authority = 'admin';
+            return false;
+          } else if (role === 'ROLE_STUDENT') {
+            this.authority = 'student';
+            return false;
+          } else if (role === 'ROLE_PROFESSOR') {
+            this.authority = 'professor';
+            return false;
+          }
+        return true;
       });
     }
   }

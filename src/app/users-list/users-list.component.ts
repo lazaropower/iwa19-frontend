@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../services/user.service';
 import {User} from './user.model';
 import {UsersListService} from './users-list.service';
-import {Course} from '../courses-list/course.model';
+import {TokenStorageService} from '../auth/token-storage.service';
 
 @Component({
   selector: 'app-users-list',
@@ -13,10 +12,29 @@ import {Course} from '../courses-list/course.model';
 
 export class UsersListComponent implements OnInit {
   userList: User[];
+  private roles: string[];
+  authority: string;
 
-  constructor(private userListService: UsersListService) { }
+  constructor(private userListService: UsersListService, private token: TokenStorageService) { }
 
   ngOnInit() {
+    if (this.token.getToken()){
+      this.roles = this.token.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_ADMIN') {
+          this.authority = 'admin';
+          return false;
+        } else if (role === 'ROLE_STUDENT') {
+          this.authority = 'student';
+          return false;
+        } else if (role === 'ROLE_PROFESSOR') {
+          this.authority = 'professor';
+          return false;
+        }
+        return true;
+      });
+    }
+
     this.getUsers();
   }
 

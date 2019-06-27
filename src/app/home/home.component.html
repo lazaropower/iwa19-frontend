@@ -1,5 +1,5 @@
 <div *ngIf="info.token; else loggedOut">
-  <h5 class="text-primary">Your information</h5>
+  <h5 class="text-primary">This is your information!</h5>
   <p>
     <strong>Email:</strong> {{info.email}}<br/>
     <strong>Roles:</strong> {{info.authorities}}<br />
@@ -9,5 +9,5 @@
 </div>
 
 <ng-template #loggedOut>
-  Please login.
+  <p> Please login. </p>
 </ng-template>

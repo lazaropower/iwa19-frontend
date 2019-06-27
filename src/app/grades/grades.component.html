@@ -1,0 +1,30 @@
+<div *ngIf="authority === 'student'">
+<h2>Grades</h2>
+
+<h3>List of availables courses</h3>
+<ul>
+  <li *ngFor="let course of courseList">
+      <span class="badge">{{course.name}} <strong>Grade</strong>: {{ getGradeFromCourse(course)}}
+      </span>
+  </li>
+
+</ul>
+</div>
+
+<div *ngIf="authority === 'professor'">
+  <h2>Grades</h2>
+
+  <h3>List of availables courses</h3>
+  <ul>
+    <li *ngFor="let course of courseList">
+      <span class="badge">{{course.name}}</span>
+
+      <span *ngFor="let user of course.users">
+      <p>{{user.email}}. <strong>Grade</strong>: {{user.grade}} <input type="number" min="1" max="5" #grade>
+        <button (click)="setGrade(course, user.email, grade.value)"> grade </button></p>
+    </span>
+    </li>
+
+  </ul>
+
+</div>

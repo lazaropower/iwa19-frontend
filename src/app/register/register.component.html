@@ -1,10 +1,28 @@
+<div *ngIf="authority === 'admin'; else unAuthorized">
+
 <div *ngIf="isSignedUp; else signupForm">
-  Your registration is successful. Please login!
+  User registered succesfully!
 </div>
 
 <ng-template #signupForm>
   <div class="row col-sm-6" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="firstname">Firstname</label>
+        <input type="text" class="form-control" name="firstname"  [(ngModel)]="form.firstname" #firstname="ngModel"
+               required />
+        <div *ngIf="f.submitted && firstname.invalid">
+          <div *ngIf="firstname.errors.required">Firstname is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="surname">Surname</label>
+        <input type="text" class="form-control" name="surname" [(ngModel)]="form.surname" #surname="ngModel"
+               required />
+        <div *ngIf="f.submitted && surname.invalid">
+          <div *ngIf="surname.errors.required">Surname is required</div>
+        </div>
+      </div>
       <div class="form-group">
         <label for="email">Email</label>
         <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
@@ -38,3 +56,8 @@
     </form>
   </div>
 </ng-template>
+</div>
+
+  <ng-template #unAuthorized>
+    You are not an administrator!
+  </ng-template>

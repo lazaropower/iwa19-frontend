@@ -7,7 +7,8 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {CoursesListComponent} from './courses-list/courses-list.component';
 import {UsersListComponent} from './users-list/users-list.component';
-//TODO: Adaptar a nuestra aplicacion
+import {GradesComponent} from './grades/grades.component';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'admin/signup',
     component: RegisterComponent
+  },
+  {
+    path: 'grades',
+    component: GradesComponent
   },
   {
     path: '',

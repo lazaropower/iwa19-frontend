@@ -12,11 +12,11 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav" routerLinkActive="active">
       <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
-      <li *ngIf="authority === 'user'" class="nav-item">
-        <a class="nav-link" routerLink="user">User Page</a>
+      <li *ngIf="authority === 'student' || authority === 'professor' "class="nav-item">
+        <a class="nav-link" routerLink="grades">Grades</a>
       </li>
       <li *ngIf="authority === 'admin'" class="nav-item">
-        <a class="nav-link" routerLink="admin">Admin Page</a>
+        <a class="nav-link" routerLink="admin">Admin Information</a>
       </li>
       <li *ngIf="authority === 'admin'" class="nav-item">
         <a class="nav-link" routerLink="admin/courses">Courses</a>

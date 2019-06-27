@@ -1,3 +1,9 @@
-<h4>Content from Server</h4>
-{{board}}
-{{errorMessage}}
+<div *ngIf="authority === 'admin'; else unAuthorized">
+  <h4>Content from Server</h4>
+  {{board}}
+  {{errorMessage}}
+</div>
+
+<ng-template #unAuthorized>
+  You are not an administrator!
+</ng-template>

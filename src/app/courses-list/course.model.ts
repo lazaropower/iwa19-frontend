@@ -1,9 +1,9 @@
 export class Course {
-  id: number;
   name: string;
+  users: Array<any>;
 
   constructor(name: string) {
     this.name = name;
+    this.users = [];
   }
-
 }
